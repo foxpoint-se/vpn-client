@@ -10,8 +10,16 @@ help:
 install-wireguard:		## install wireguard
 	sudo apt install wireguard
 
+.PHONY: setup-client
+setup-client:
+	cd api-client && yarn
+
 connect:		## connect using stored wg0.conf
 	wg-quick up ./wg0.conf
 
 disconnect:		## disconnect using stored wg0.conf
 	wg-quick down ./wg0.conf
+
+.PHONY: build
+build: setup-client		## build
+	cd api-client && yarn build
