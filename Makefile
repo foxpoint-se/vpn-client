@@ -23,3 +23,11 @@ disconnect:		## disconnect using stored wg0.conf
 .PHONY: build
 build: setup-client		## build
 	cd api-client && yarn build
+
+.PHONY: clientconf
+clientconf:		## get client conf, e.g. `CLIENT=myclient make clientconf`
+	@@if [ -z "$(CLIENT)" ]; then \
+			echo "Call like this: CLIENT=myclient make clientconf"; \
+		else \
+			cd api-client && yarn clientconf -- $(CLIENT); \
+		fi
