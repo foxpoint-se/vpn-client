@@ -1,2 +1,5 @@
 # Wireguard configurations
 *.conf
+
+# DDS configurations
+*.xml

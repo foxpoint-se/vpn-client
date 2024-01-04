@@ -27,9 +27,17 @@ build: setup-client		## build
 	cd api-client && yarn build
 
 .PHONY: clientconf
-clientconf:		## get client conf, e.g. `CLIENT=myclient make clientconf`
+clientconf: build		## get client conf, e.g. `CLIENT=myclient make clientconf`
 	@@if [ -z "$(CLIENT)" ]; then \
 			echo "Call like this: CLIENT=myclient make clientconf"; \
 		else \
 			cd api-client && yarn clientconf -- $(CLIENT); \
 		fi
+
+.PHONY: clean
+clean:		## clean generated stuff
+	rm -rf wg0.conf dds.xml api-client/dist api-client/node_modules
+
+.PHONY: ddsconf
+ddsconf: build		## create dds.xml
+	cd api-client && yarn ddsconf
