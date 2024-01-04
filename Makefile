@@ -6,10 +6,6 @@ help:
 
 .DEFAULT_GOAL := help
 
-.PHONY: install-wireguard
-install-wireguard:		## install wireguard
-	sudo apt install wireguard
-
 .PHONY: setup-client
 setup-client:
 	cd api-client && yarn
