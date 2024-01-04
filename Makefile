@@ -37,3 +37,7 @@ clean:		## clean generated stuff
 .PHONY: ddsconf
 ddsconf: build		## create dds.xml
 	cd api-client && yarn ddsconf
+
+.PHONY: multicast
+multicast:		## enable multicast on the wg0 interface
+	sudo ifconfig wg0 multicast
